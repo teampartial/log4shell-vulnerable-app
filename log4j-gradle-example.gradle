@@ -1,0 +1,15 @@
+// Add these dependencies to your build.gradle
+    dependencies {
+        implementation 'org.apache.logging.log4j:log4j-api:2.17.1'
+        implementation 'org.apache.logging.log4j:log4j-core:2.17.1'
+    }
+
+    // Add this to force all transitive dependencies to use safe version
+    configurations.all {
+        resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+            if (details.requested.group == 'org.apache.logging.log4j') {
+                details.useVersion '2.17.1'
+            }
+        }
+    }
+    
